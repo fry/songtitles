@@ -180,10 +180,6 @@ aside {
     }
   }
 
-  .errorMessage {
-    color: red;
-  }
-
   .team {
     position: fixed;
     top: 0;
@@ -291,6 +287,11 @@ article {
   }
 }
 
+
+.errorMessage {
+  color: red;
+  padding-bottom: $padding;
+}
 footer {
   position: fixed;
   bottom: 0;
