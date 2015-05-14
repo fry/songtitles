@@ -97,6 +97,15 @@ Template.channelHeader.events({
   }
 })
 
+function showError(msg) {
+  console.log(msg)
+  var dlg = $(".errorMessage")
+  dlg.html(msg)
+  dlg.show().delay(2000).fadeOut(300, function() {
+    dlg.toggleClass("hidden", true)
+  })
+}
+
 Template.messageForm.events({
   'keydown textarea': function(event, instance) {
     if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
@@ -114,11 +123,11 @@ Template.messageForm.events({
           window.scrollTo(0, document.body.scrollHeight);
         } else {
           if (res == 1) {
-            alert("Not your turn!");
+            showError("Not your turn!");
           } else if (res == 2) {
-            alert("Invalid song title!");
+            showError("Invalid song title!");
           } else {
-            alert("Some error!")
+            showError("Some error!")
           }
         }
       })
