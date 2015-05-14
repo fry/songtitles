@@ -77,12 +77,16 @@ Template.channelHeader.events({
       // Reset game
       Channels.update({ _id: _id }, { $set: {
         gameFinished: false,
-        gameRunning: false
+        gameRunning: false,
+        points: [],
+        lastSpeaker: null
       }})
     } else {
       Channels.update({ _id: _id }, { $set: {
         gameRunning: true,
-        gameFinished: false
+        gameFinished: false,
+        points: [],
+        lastSpeaker: null
       }})
     }
   }
@@ -99,12 +103,18 @@ Template.messageForm.events({
       instance.find('textarea').value = ''; // Clear the textarea.
 
       Meteor.call("submitMessage", _id, value, function(err, res) {
-        if (res) {
+        if (res == 0) {
           // Restore the autosize value.
           instance.$('textarea').css({height: 37});
           window.scrollTo(0, document.body.scrollHeight);
         } else {
-          alert("wrong song title");
+          if (res == 1) {
+            alert("Not your turn!");
+          } else if (res == 2) {
+            alert("Invalid song title!");
+          } else {
+            alert("Some error!")
+          }
         }
       })
     }
