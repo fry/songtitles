@@ -14,7 +14,7 @@
       {{/if}}
       <div class="message-body">
         <div><span class="username">{{user.username}}</span> <span class="time">{{time}}</span></div>
-        <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
+        {{> messageBody}}
       </div>
     </li>
     {{/each}}
@@ -27,8 +27,14 @@
   {{> home}}
 </template>
 
+<template name="messageBody">
+  <div class="message">{{#markdown}}{{{message}}}{{/markdown}} - <span class="artist">{{artist}}</span>
+  </div>
+</template>
+
 <template name="messageForm">
   <form>
     <textarea rows="1" cols="100"></textarea>
   </form>
 </template>
+

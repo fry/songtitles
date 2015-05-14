@@ -58,16 +58,28 @@ Template.messageForm.events({
       // Markdown requires double spaces at the end of the line to force line-breaks.
       value = value.replace("\n", "  \n");
       instance.find('textarea').value = ''; // Clear the textarea.
-      Messages.insert({
-        _channel: _id, // Channel reference.
-        message: value,
-        _userId: Meteor.userId(), // Add userId to each message.
-        timestamp: new Date() // Add a timestamp to each message.
-      });
-      // Restore the autosize value.
-      instance.$('textarea').css({height: 37});
-      window.scrollTo(0, document.body.scrollHeight);
+
+      Meteor.call("submitMessage", _id, value, function(err, res) {
+        if (res) {
+          // Restore the autosize value.
+          instance.$('textarea').css({height: 37});
+          window.scrollTo(0, document.body.scrollHeight);
+        } else {
+          alert("wrong song title")
+        }
+      })
     }
     $('article').css({'padding-bottom': $('footer').outerHeight()});
   }
 });
+
+var audio = null
+Template.messageBody.onCreated(function() {
+  if (audio) { 
+    audio.pause()
+    audio.src = this.data.preview_url
+  } else
+    audio = new Audio(this.data.preview_url)
+  audio.play()
+})
+
