@@ -203,7 +203,7 @@ aside {
 }
 
 .avatar {
-  width: 40px;
+  width: 60px;
   border-radius: 4px;
   float: left;
   margin-right: $padding*2/3;
@@ -215,12 +215,13 @@ article {
   height: calc(100% - 53px);
   margin-left: $aside;
   .message {
-    font-size: 15px;
+    font-size: 18px;
     color: $secondary;
   }
   .username, h2 {
     color: darken($primary, 15%);
     font-weight: 900;
+    font-size: 14px;
   }
   li {
     margin-top: $padding/2;
@@ -243,7 +244,7 @@ article {
   }
   .artist {
     display: inline-block;
-    color: steelblue;
+    color: lightgray;
   }
 }
 
