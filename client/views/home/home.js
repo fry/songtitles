@@ -22,6 +22,14 @@ Template.home.helpers({
   active: function() {
     var _id = Router.current().params._id;
     return _id == this._id ? 'active' : '';
+  },
+
+  gameState: function() {
+    if (this.gameFinished)
+      return 'gameFinished'
+    if (this.gameRunning)
+      return 'gameRunning'
+    return 'gameNotStarted'
   }
 });
 

@@ -159,6 +159,25 @@ aside {
       }
     }
   }
+
+  .gameRunning {
+    a {
+      color: blue;
+    }
+  }
+
+  .gameFinished {
+    a {
+      color: red;
+    }
+  }
+
+  .gameNotStarted {
+    a {
+      color: lightgreen;
+    }
+  }
+
   .team {
     position: fixed;
     top: 0;

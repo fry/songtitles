@@ -1,13 +1,13 @@
 <template name="home">
   {{#contentFor 'aside'}}
   <div class="team">
-    <span class="title">Meteor Slack</span>
+    <span class="title">Song Titles</span>
   </div>
 
   {{> channelForm}}
   <ul>
     {{#each channels}}
-    <li class="{{active}}"><a href="/channel/{{_id}}">{{name}}</a></li>
+    <li class="{{active}} {{gameState}}"><a href="/game/{{_id}}">{{name}}</a></li>
     {{/each}}
   </ul>
   {{> gameForm}}
@@ -30,7 +30,7 @@
 
 <template name="channelForm">
   <form>
-    <label for="name">Channels</label>
+    <label for="name">Games</label>
     <button type="button" class="show-form"><i class="icon-plus"></i></button>
     <div class="add-channel-form hidden">
       <input id="name" type="text" autocomplete="off">

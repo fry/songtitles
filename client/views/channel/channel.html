@@ -1,6 +1,6 @@
 <template name="channel">
   {{#contentFor 'header'}}
-  <h1>{{channel.name}} - {{#if channel.isGame}}GAME{{else}}NO GAME{{/if}}</h1>
+  {{> channelHeader}}
   {{/contentFor}}
 
   <ul>
@@ -36,4 +36,8 @@
   <form>
     <textarea rows="1" cols="100"></textarea>
   </form>
+</template>
+
+<template name="channelHeader">
+    <h1>{{channel.name}} <button type="button" id="startGameButton">{{gameStateButton}}</button></h1>
 </template>

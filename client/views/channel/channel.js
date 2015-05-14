@@ -20,11 +20,6 @@ Template.channel.helpers({
     return Messages.find({_channel: _id});
   },
 
-  channel: function() {
-    var _id = Router.current().params._id;
-    return Channels.findOne({_id: _id});
-  },
-
   user: function() {
     return Meteor.users.findOne({_id: this._userId});
   },
@@ -46,8 +41,52 @@ Template.channel.helpers({
     if (user && user.emails) {
       return Gravatar.imageUrl(user.emails[0].address);
     }
-  }
+  },
 });
+
+Template.channelHeader.helpers({
+  channel: function() {
+    var _id = Router.current().params._id;
+    return Channels.findOne({_id: _id});
+  },
+
+  gameStateButton: function() {
+    var _id = Router.current().params._id;
+    var channel = Channels.findOne({_id: _id});
+    if (channel.gameFinished)
+      return "Reset Game"
+    if (channel.gameRunning)
+      return "Stop Game"
+    return "Start Game"
+  }
+})
+
+Template.channelHeader.events({
+  'click #startGameButton': function(event, instance) {
+    event.preventDefault();
+
+    var _id = Router.current().params._id;
+    var channel = Channels.findOne({_id: _id});
+
+    if (channel.gameRunning) {
+      Channels.update({ _id: _id }, { $set: {
+        gameFinished: true,
+        gameRunning: false
+      }})
+    } else if (channel.gameFinished) {
+      // Reset game
+      Channels.update({ _id: _id }, { $set: {
+        gameFinished: false,
+        gameRunning: false
+      }})
+    } else {
+      Channels.update({ _id: _id }, { $set: {
+        gameRunning: true,
+        gameFinished: false
+      }})
+    }
+  }
+})
 
 Template.messageForm.events({
   'keydown textarea': function(event, instance) {
