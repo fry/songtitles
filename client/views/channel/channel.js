@@ -28,6 +28,11 @@ Template.channel.helpers({
     return moment(this.timestamp).format('h:mm a');
   },
 
+  points: function() {
+    var _id = Router.current().params._id;
+    return Channels.findOne({_id: _id}).points;
+  },
+
   date: function() {
     var dateNow = moment(this.timestamp).calendar();
     var instance = Template.instance();

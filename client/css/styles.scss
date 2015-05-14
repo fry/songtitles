@@ -1,4 +1,5 @@
 $aside: 220px;
+$detail: 220px;
 $top: 53px;
 
 $primary: #E57373;
@@ -34,6 +35,7 @@ ul, li {
 
 header,
 aside,
+detail,
 footer {
   position: fixed;
 }
@@ -47,7 +49,7 @@ header {
   h1 {
     padding: 0 $padding + 4px; // padding only on left and right side.
     margin: 0;
-    line-height: 53px;
+    line-height: $top;
     color: $primary;
     font-size: 24px;
     font-weight: 900;
@@ -195,6 +197,21 @@ aside {
   }
 }
 
+detail {
+  top: $top;
+  right: 0;
+  width: $detail;
+  padding: $padding/2;
+  height: calc(100% - 53px);
+  background-color: lighten($primary, 15%);
+  float: right;
+}
+
+span .scoreboard {
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .user {
   position: fixed;
   display: block;
@@ -230,7 +247,7 @@ aside {
 
 article {
   padding: $padding $padding*4/3;
-  margin-top: 53px;
+  margin-top: $top;
   height: calc(100% - 53px);
   margin-left: $aside;
   .message {
@@ -271,6 +288,7 @@ footer {
   position: fixed;
   bottom: 0;
   margin-left: $aside;
+  margin-right: $aside + $padding;
   padding: $padding $padding*4/3-3px;
   background: white;
   z-index: 1;
