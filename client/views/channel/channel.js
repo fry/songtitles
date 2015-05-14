@@ -65,7 +65,7 @@ Template.messageForm.events({
           instance.$('textarea').css({height: 37});
           window.scrollTo(0, document.body.scrollHeight);
         } else {
-          alert("wrong song title")
+          alert("wrong song title");
         }
       })
     }
@@ -75,11 +75,10 @@ Template.messageForm.events({
 
 var audio = null
 Template.messageBody.onCreated(function() {
-  if (audio) { 
+  if (audio) {
     audio.pause()
     audio.src = this.data.preview_url
   } else
     audio = new Audio(this.data.preview_url)
   audio.play()
 })
-

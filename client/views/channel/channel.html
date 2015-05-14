@@ -1,6 +1,6 @@
 <template name="channel">
   {{#contentFor 'header'}}
-  <h1>{{channel.name}}</h1>
+  <h1>{{channel.name}} - {{#if channel.isGame}}GAME{{else}}NO GAME{{/if}}</h1>
   {{/contentFor}}
 
   <ul>

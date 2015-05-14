@@ -5,7 +5,11 @@ Template.home.onCreated(function() {
 
 Template.home.helpers({
   channels: function() {
-    return Channels.find();
+    return Channels.find({isGame: false});
+  },
+
+  games: function() {
+    return Channels.find({isGame: true});
   },
 
   avatar: function() {
@@ -33,7 +37,34 @@ Template.channelForm.events({
     var name = instance.find('input').value;
     instance.find('input').value = '';
 
-    Channels.insert({name: name});
+    Channels.insert({name: name, isGame: false});
+
+    // Hide form when submitted.
+    instance.$('.add-channel-form').addClass('hidden');
+  },
+
+  'click .show-form': function(event, instance) {
+    // We are building an application, so we don't want the form to reload the page.
+    event.preventDefault();
+
+    // Show form.
+    instance.$('.add-channel-form').toggleClass('hidden');
+    instance.$('.add-channel-form input').focus();
+  }
+});
+Template.gameForm.onCreated(function() {
+  $('textarea').autosize();
+});
+
+Template.gameForm.events({
+  'submit form': function(event, instance) {
+    // We are building an application, so we don't want the form to reload the page.
+    event.preventDefault();
+
+    var name = instance.find('input').value;
+    instance.find('input').value = '';
+
+    Channels.insert({name: name, isGame: true});
 
     // Hide form when submitted.
     instance.$('.add-channel-form').addClass('hidden');
