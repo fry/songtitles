@@ -1,9 +1,9 @@
 $aside: 220px;
 $top: 53px;
 
-$primary: #453744;
-$secondary: #3D3C40;
-$accent: #4C9689;
+$primary: #E57373;
+$secondary: #880E4F;
+$accent: #536DFE;
 
 $padding: 16px;
 
@@ -241,6 +241,10 @@ article {
   .message-body {
     float: left;
   }
+  .artist {
+    display: inline-block;
+    color: steelblue;
+  }
 }
 
 footer {
@@ -263,10 +267,3 @@ footer {
     }
   }
 }
-
-
-.artist {
-  display: inline;
-  color: steelblue;
-}
-
