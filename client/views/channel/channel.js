@@ -1,3 +1,5 @@
+var audio = null
+
 Template.channel.onCreated(function() {
   var instance = this;
   // Listen for changes to reactive variables (such as Router.current()).
@@ -86,6 +88,9 @@ Template.channelHeader.events({
         points: [],
         lastSpeaker: null
       }})
+      Meteor.call("resetGame", _id)
+      if (audio)
+        audio.pause()
     } else {
       Channels.update({ _id: _id }, { $set: {
         gameRunning: true,
@@ -136,7 +141,6 @@ Template.messageForm.events({
   }
 });
 
-var audio = null
 Template.messageBody.onCreated(function() {
   if (audio) {
     audio.pause()
